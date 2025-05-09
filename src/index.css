@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+#hero {
+  position: relative;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, rgb(17, 24, 39), transparent);
+  z-index: 1;
+}
+/* src/index.css */
+nav {
+  border: none !important;
+}
+/* index.css */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.skill-card {
+  animation: float 6s ease-in-out infinite;
+}
