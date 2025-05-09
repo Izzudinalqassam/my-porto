@@ -14,7 +14,7 @@ const experiences = [
   {
     id: 2,
     title: "Programmer Internship",
-    company: "PT Jababeka TBK",
+    company: "PT Jababeka TBK (Kampus Merdeka Batch 7)",
     period: "Sep 2024 - Jan 2025",
     skills: ["Web Development", "IoT", "RESTful APIs", "Database Optimization"],
     icon: "💻",
@@ -41,11 +41,11 @@ const experiences = [
   {
     id: 5,
     title: "IBM AI & System Administrator",
-    company: "Infinite Learning",
+    company: "Infinite Learning (Kampus Merdeka Batch 5)",
     period: "Aug 2023 - Jan 2024",
     skills: ["IBM Cloud", "Linux Admin", "AI Modeling", "Watson Tools"],
     icon: "🤖",
-    level: "Course"
+    level: "Study Independent"
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ const RoadmapItem = ({ experience, isLast }) => {
       bg: "from-cyan-400 to-blue-700",
       hover: "hover:border-cyan-400 hover:shadow-cyan-500/20 hover:shadow-lg"
     },
-    Course: {
+    "Study Independent": {
       bg: "from-cyan-400 to-blue-700",
       hover: "hover:border-cyan-400 hover:shadow-cyan-500/20 hover:shadow-lg"
     }
