@@ -7,10 +7,11 @@ const skills = [
     id: 1,
     name: "Core Technical Skills",
     items: [
-      "JavaScript/TypeScript",
-      "React.js",
-      "Python",
-      "MySQL/PostgreSQL"
+      "network administrator",
+      "web development",
+      "system administrator",
+      "IT support",
+      "server administrator"
     ],
     icon: "💻"
   },
@@ -21,7 +22,10 @@ const skills = [
       "Git",
       "VS Code",
       "Docker",
-      "Linux"
+      "Linux",
+      "Dbeaver",
+      "Postman",
+      "Laragon"
     ],
     icon: "🛠️"
   },
@@ -32,7 +36,10 @@ const skills = [
       "Problem Solving",
       "Team Collaboration",
       "Time Management",
-      "Continuous Learning"
+      "Continuous Learning",
+      "Communication",
+      "Adaptability",
+      "Critical Thinking"
     ],
     icon: "🎯"
   },
@@ -43,7 +50,10 @@ const skills = [
       "Next.js",
       "Tailwind CSS",
       "AWS Cloud Services",
-      "Kubernetes"
+      "Kubernetes",
+      "Golang",
+      "Kubernetes",
+      "web3",
     ],
     icon: "📚"
   }

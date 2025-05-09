@@ -10,20 +10,20 @@ const techStack = [
     items: ['Git', 'GitHub', 'Docker', 'Grafana', 'Postman']
   },
   {
-    id: 'frontend',
-    title: 'Frontend',
+    id: 'Web Development',
+    title: 'Web Development',
     icon: '💻',
-    items: ['React.js', 'Tailwind', 'HTML5']
+    items: ['React.js', 'Tailwind', 'Laravel','PHP','Python']
   },
   {
-    id: 'database',
+    id: 'Database',
     title: 'Database',
     icon: (
       <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
       </svg>
     ),
-    items: ['MySQL', 'PostgreSQL', 'Oracle']
+    items: ['MySQL', 'Postgre',]
   }
 ];
 
