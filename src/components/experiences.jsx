@@ -42,7 +42,7 @@ const experiences = [
     id: 5,
     title: "IBM AI & System Administrator",
     company: "Infinite Learning",
-    period: "Oct 2019 - Apr 2020",
+    period: "Aug 2023 - Jan 2024",
     skills: ["IBM Cloud", "Linux Admin", "AI Modeling", "Watson Tools"],
     icon: "🤖",
     level: "Course"
