@@ -1,6 +1,7 @@
 // Navbar.jsx
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -55,22 +56,32 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
               {[
-                { name: 'Home', id: 'hero' },
                 { name: 'About', id: 'about' },
                 { name: 'Experience', id: 'experience' }, 
                 { name: 'Education', id: 'education' },
                 { name: 'Projects', id: 'projects' },
+                { name: 'Articles', id: 'articles' },
                 { name: 'Skills', id: 'skills' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={(e) => handleClick(e, item.id)}
-                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  {item.name}
-                </a>
+                item.isRouterLink ? (
+                  <Link
+                    key={item.id}
+                    to="/articles"
+                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e) => handleClick(e, item.id)}
+                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
             </div>
           </div>
