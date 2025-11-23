@@ -6,7 +6,7 @@ const experiences = [
     period: "February 2025 - Present",
     location: "Jakarta, Indonesia",
     skills: ["Docker", "Containerization", "Shell Scripting", "Ubuntu Server", "Grafana", "Prometheus", "node_exporter", "AI Deployment Pipelines", "DevOps"],
-    icon: "🚀",
+    icon: "Rocket",
     level: "Staff",
     achievements: [
       "Engineered scalable AI deployment pipelines using Docker containerization across 100+ edge nodes",
@@ -22,7 +22,7 @@ const experiences = [
     period: "January 2025 - February 2025",
     location: "Cikarang, Indonesia",
     skills: ["Windows Server", "WSUS", "Task Scheduler", "System Administration", "Technical Support", "Asset Management"],
-    icon: "🛠️",
+    icon: "Wrench",
     level: "Internship",
     achievements: [
       "Automated Windows Server Update Services (WSUS) using Task Scheduler for 100% patch compliance",
@@ -37,7 +37,7 @@ const experiences = [
     period: "September 2024 - January 2025",
     location: "Cikarang, Indonesia",
     skills: ["RFID", "ESP8266", "IoT", "Web Development", "MySQL", "Real-time Monitoring", "PHP"],
-    icon: "💻",
+    icon: "Code",
     level: "Internship",
     achievements: [
       "Developed web-based attendance system using RFID & ESP8266, reducing manual entry by 50%",
@@ -52,7 +52,7 @@ const experiences = [
     period: "May 2024 - September 2024",
     location: "Cikarang, Indonesia",
     skills: ["Technical Support", "Classroom Technology", "Network Monitoring", "Problem Resolution", "System Administration"],
-    icon: "🎓",
+    icon: "GraduationCap",
     level: "Internship",
     achievements: [
       "Prepared and verified 100% of classroom tech setups for 50+ lecturers weekly",
@@ -67,7 +67,7 @@ const experiences = [
     period: "August 2023 - January 2024",
     location: "Batam, Indonesia",
     skills: ["IBM Cloud", "Red Hat Enterprise Linux (RHEL)", "IBM QRadar X", "Cybersecurity", "System Hardening", "Firewall Configuration"],
-    icon: "🔐",
+    icon: "Shield",
     level: "Study Independent",
     achievements: [
       "Administered 10+ Linux-based VMs using RHEL with system hardening standards compliance",
@@ -83,7 +83,7 @@ const experiences = [
     period: "May 2023 - August 2023",
     location: "Tambun, Indonesia",
     skills: ["Helpdesk Support", "Hardware Maintenance", "Backup Management", "Cybersecurity Best Practices", "Preventive Maintenance"],
-    icon: "💻",
+    icon: "Monitor",
     level: "Internship",
     achievements: [
       "Provided on-site support for 50+ users, resolving helpdesk tickets within 20 minutes average",

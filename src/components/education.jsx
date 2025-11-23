@@ -1,5 +1,6 @@
 // education.jsx
 import { motion } from 'framer-motion'
+import { GraduationCap, Award, MapPin, BookOpen, Target } from 'lucide-react'
 import education from '../data/education.js'
 
 const EducationItem = ({ education, isLast }) => {
@@ -34,7 +35,7 @@ const EducationItem = ({ education, isLast }) => {
         <div className={`h-full w-0.5 absolute left-5 top-10 bg-gradient-to-b ${getColor(education.degree).bg}`} />
       )}
       <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r ${getColor(education.degree).bg} flex items-center justify-center text-white z-10`}>
-        {education.degree.includes("Bachelor") ? "  🎓" : "🎓"}
+        {education.degree.includes("Bachelor") ? <GraduationCap size={20} /> : <GraduationCap size={20} />}
       </div>
       <div className="flex-grow pl-6">
         <motion.div
@@ -51,12 +52,20 @@ const EducationItem = ({ education, isLast }) => {
               >
                 {education.degree}
               </motion.h3>
-              <p className="text-gray-400">{education.institution}</p>
+              <p className="text-gray-400 flex items-center">
+                {education.institution}
+              </p>
             </div>
             <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${getColor(education.degree).bg} text-white`}>
               {education.period}
             </span>
           </div>
+          {education.location && (
+            <p className="text-gray-400 text-sm flex items-center mt-1">
+              <MapPin size={14} className="mr-1" />
+              {education.location}
+            </p>
+          )}
           {education.gpa && (
             <p className="text-gray-400 text-sm mt-1">GPA: {education.gpa}</p>
           )}
@@ -89,12 +98,30 @@ const EducationItem = ({ education, isLast }) => {
                 <motion.p
                   key={index}
                   whileHover={{ scale: 1.02 }}
-                  className="text-gray-400 text-sm flex items-center"
+                  className="text-gray-400 text-sm flex items-start"
                 >
-                  <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                  </svg>
+                  <Award size={16} className="mr-2 text-cyan-400 flex-shrink-0" />
                   {highlight}
+                </motion.p>
+              ))}
+            </motion.div>
+          )}
+
+          {education.achievements?.length > 0 && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="mt-4 space-y-2"
+            >
+              {education.achievements.map((achievement, index) => (
+                <motion.p
+                  key={index}
+                  whileHover={{ scale: 1.02 }}
+                  className="text-gray-300 text-sm flex items-start"
+                >
+                  <Target size={16} className="mr-2 text-cyan-400 flex-shrink-0" />
+                  {achievement}
                 </motion.p>
               ))}
             </motion.div>

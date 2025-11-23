@@ -1,6 +1,16 @@
 // experiences.jsx
 import { motion } from 'framer-motion'
+import { Rocket, Wrench, Code, GraduationCap, Shield, Monitor, MapPin, CheckSquare } from 'lucide-react'
 import experiences from '../data/experiences.js'
+
+const iconMap = {
+  Rocket,
+  Wrench,
+  Code,
+  GraduationCap,
+  Shield,
+  Monitor
+}
 
 const RoadmapItem = ({ experience, isLast }) => {
   const levelColors = {
@@ -18,6 +28,8 @@ const RoadmapItem = ({ experience, isLast }) => {
     }
   }
 
+  const IconComponent = iconMap[experience.icon] || Code
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -29,7 +41,7 @@ const RoadmapItem = ({ experience, isLast }) => {
         <div className={`h-full w-0.5 absolute left-5 top-10 bg-gradient-to-b ${levelColors[experience.level].bg}`} />
       )}
       <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r ${levelColors[experience.level].bg} flex items-center justify-center text-white z-10`}>
-        {experience.icon}
+        <IconComponent size={20} />
       </div>
       <div className="flex-grow pl-6">
         <motion.div
@@ -54,7 +66,10 @@ const RoadmapItem = ({ experience, isLast }) => {
           </div>
           <p className="text-gray-400 text-sm mt-1">{experience.period}</p>
           {experience.location && (
-            <p className="text-gray-400 text-sm">📍 {experience.location}</p>
+            <p className="text-gray-400 text-sm flex items-center">
+              <MapPin size={14} className="mr-1" />
+              {experience.location}
+            </p>
           )}
           
           <motion.div 
@@ -87,9 +102,7 @@ const RoadmapItem = ({ experience, isLast }) => {
                   whileHover={{ scale: 1.02 }}
                   className="text-gray-300 text-sm flex items-start"
                 >
-                  <svg className="w-4 h-4 mr-2 mt-0.5 text-cyan-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-                  </svg>
+                  <CheckSquare size={16} className="mr-2 mt-0.5 text-cyan-400 flex-shrink-0" />
                   {achievement}
                 </motion.p>
               ))}
