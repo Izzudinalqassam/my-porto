@@ -1,65 +1,48 @@
-// ExperienceSection.jsx - Professional experience timeline section
+// ExperienceSection.jsx - Clean and simple experience section for recruiters
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase } from 'lucide-react';
 import TimelineItem from '../ui/TimelineItem';
-import { ANIMATION_CONFIG } from '../../utils/constants.js';
 import experiences from '../../data/experiences.js';
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="relative -mt-20 pt-20 pb-20 w-full px-4 max-w-4xl mx-auto overflow-hidden">
-      {/* Enhanced section header with animation */}
+    <section id="experience" className="relative -mt-20 pt-20 pb-20 w-full px-4 max-w-4xl mx-auto">
+      {/* Clean section header */}
       <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, type: "spring" }}
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring" }}
-          className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mb-4 mx-auto shadow-xl"
-        >
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mb-4 mx-auto">
           <Briefcase size={28} className="text-white" />
-        </motion.div>
-        <motion.h2
-          {...ANIMATION_CONFIG.card}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-white"
-        >
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
-            Professional Journey
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+            Professional Experience
           </span>
-        </motion.h2>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-gray-400 max-w-2xl mx-auto"
-        >
-          3+ years of experience in IT operations, system administration, and software development
-        </motion.p>
+        </h2>
+        <p className="text-gray-400 max-w-2xl mx-auto">
+          3+ years in IT operations, system administration, and DevOps with quantified results
+        </p>
       </motion.div>
 
+      {/* Clean timeline */}
       <div className="relative">
-        {/* Enhanced timeline base with gradient */}
-        <motion.div
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="absolute h-full w-0.5 bg-gradient-to-b from-gray-600 via-cyan-400 to-blue-500 left-5 top-0 hidden md:block origin-top"
-        />
+        {/* Simple timeline line */}
+        <div className="absolute h-full w-0.5 bg-gray-700 left-5 top-0 hidden md:block" />
         
         {/* Timeline items */}
-        <div className="space-y-12">
+        <div className="space-y-8">
           {experiences.map((exp, index) => (
             <TimelineItem
               key={exp.id}
               experience={exp}
               isLast={index === experiences.length - 1}
               type="experience"
+              index={index}
             />
           ))}
         </div>
