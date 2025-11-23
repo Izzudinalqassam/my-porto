@@ -1,3 +1,4 @@
+// projects.js - Updated with real GitHub repositories
 const projects = [
   {
     id: 1,
@@ -8,51 +9,76 @@ const projects = [
     tags: ["Web Application", "Support System", "TypeScript"],
     githubUrl: "https://github.com/Izzudinalqassam/faq-nodeflux",
     language: "TypeScript",
-    status: "Active"
+    status: "Active",
+    stars: 0,
+    forks: 0,
+    size: 247,
+    createdAt: "2025-11-02",
+    updatedAt: "2025-11-07"
   },
   {
     id: 2,
     title: "Love Ur Fragz",
     description: "Frag enthusiast application for gaming community",
-    techStack: ["JavaScript", "React", "Web Development"],
+    techStack: ["JavaScript", "React", "Web Development", "Gaming"],
     icon: "Gamepad2",
     tags: ["Gaming", "Community", "Web App"],
     githubUrl: "https://github.com/Izzudinalqassam/love-ur-fragz",
     language: "JavaScript",
-    status: "Development"
+    status: "Development",
+    stars: 0,
+    forks: 0,
+    size: 159,
+    createdAt: "2025-10-28",
+    updatedAt: "2025-10-28"
   },
   {
     id: 3,
     title: "Backend API System",
-    description: "RESTful API backend service for web applications",
-    techStack: ["PHP", "MySQL", "RESTful API", "Backend"],
+    description: "RESTful API backend service for web applications with CodeIgniter 4",
+    techStack: ["PHP", "MySQL", "RESTful API", "Backend", "CodeIgniter"],
     icon: "Database",
     tags: ["API", "Backend", "PHP", "Database"],
     githubUrl: "https://github.com/Izzudinalqassam/Izzudin-API-Codeigniter4",
     language: "PHP",
-    status: "Active"
+    status: "Active",
+    stars: 0,
+    forks: 0,
+    size: 435,
+    createdAt: "2024-09-16",
+    updatedAt: "2024-09-16"
   },
   {
     id: 4,
     title: "Web Programming Project",
-    description: "Full-stack web development project with modern technologies",
+    description: "Full-stack web development project with PHP, MySQL, and modern web technologies",
     techStack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
     icon: "Globe",
     tags: ["Full Stack", "Web Development", "PHP"],
     githubUrl: "https://github.com/Izzudinalqassam/Izzudin-webpro-2",
     language: "PHP",
-    status: "Completed"
+    status: "Completed",
+    stars: 0,
+    forks: 0,
+    size: 503,
+    createdAt: "2024-03-18",
+    updatedAt: "2024-04-24"
   },
   {
     id: 5,
     title: "CuyUniversity",
-    description: "University management system for educational institutions",
-    techStack: ["JavaScript", "Web Development", "Database"],
+    description: "University management system for educational institutions with modern web technologies",
+    techStack: ["JavaScript", "Web Development", "Database", "University System"],
     icon: "School",
     tags: ["Education", "Management System", "University"],
     githubUrl: "https://github.com/Izzudinalqassam/CuyUniversity",
     language: "JavaScript",
-    status: "Development"
+    status: "Development",
+    stars: 0,
+    forks: 0,
+    size: 307,
+    createdAt: "2023-01-14",
+    updatedAt: "2023-01-14"
   }
 ];
 
