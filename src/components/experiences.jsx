@@ -1,69 +1,55 @@
-// experiences.jsx
-import { motion } from 'framer-motion'
-import { Rocket, Wrench, Code, GraduationCap, Shield, Monitor, MapPin, CheckSquare } from 'lucide-react'
-import experiences from '../data/experiences.js'
+// experiences.jsx - Professional experience timeline component
+import React from 'react';
+import { motion } from 'framer-motion';
+import { MapPin, CheckSquare } from 'lucide-react';
+import Icon from './ui/Icon';
+import { LEVEL_COLORS, ANIMATION_CONFIG } from '../utils/constants.js';
+import experiences from '../data/experiences.js';
 
-const iconMap = {
-  Rocket,
-  Wrench,
-  Code,
-  GraduationCap,
-  Shield,
-  Monitor
-}
-
-const RoadmapItem = ({ experience, isLast }) => {
-  const levelColors = {
-    Internship: {
-      bg: "from-cyan-400 to-blue-700",
-      hover: "hover:border-cyan-400 hover:shadow-cyan-500/20 hover:shadow-lg"
-    },
-    Staff: {
-      bg: "from-cyan-400 to-blue-700",
-      hover: "hover:border-cyan-400 hover:shadow-cyan-500/20 hover:shadow-lg"
-    },
-    "Study Independent": {
-      bg: "from-cyan-400 to-blue-700",
-      hover: "hover:border-cyan-400 hover:shadow-cyan-500/20 hover:shadow-lg"
-    }
-  }
-
-  const IconComponent = iconMap[experience.icon] || Code
+// Timeline item component
+const TimelineItem = ({ experience, isLast }) => {
+  const colors = LEVEL_COLORS[experience.level] || LEVEL_COLORS.Internship;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 * experience.id }}
+      {...ANIMATION_CONFIG.card}
+      transition={{ ...ANIMATION_CONFIG.card.transition, delay: experience.id * 0.1 }}
       className="flex relative pb-12"
     >
+      {/* Timeline connector */}
       {!isLast && (
-        <div className={`h-full w-0.5 absolute left-5 top-10 bg-gradient-to-b ${levelColors[experience.level].bg}`} />
+        <div className={`h-full w-0.5 absolute left-5 top-10 bg-gradient-to-b ${colors.bg}`} />
       )}
-      <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r ${levelColors[experience.level].bg} flex items-center justify-center text-white z-10`}>
-        <IconComponent size={20} />
+      
+      {/* Timeline dot with icon */}
+      <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r ${colors.bg} flex items-center justify-center text-white z-10`}>
+        <Icon name={experience.icon} size={20} />
       </div>
+      
+      {/* Content card */}
       <div className="flex-grow pl-6">
         <motion.div
-          whileHover={{ scale: 1.02 }}
-          className={`bg-gray-800/80 p-6 rounded-xl border border-gray-700 backdrop-blur-sm transition-all duration-300 ${levelColors[experience.level].hover}`}
+          {...ANIMATION_CONFIG.hover}
+          className={`bg-gray-800/80 p-6 rounded-xl border border-gray-700 backdrop-blur-sm transition-all duration-300 ${colors.hover}`}
         >
+          {/* Header with title and badge */}
           <div className="flex flex-col md:flex-row justify-between items-start">
             <div>
               <motion.h3 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
+                {...ANIMATION_CONFIG.fadeIn}
+                transition={{ ...ANIMATION_CONFIG.fadeIn.transition, delay: 0.2 }}
                 className="text-xl font-bold text-white"
               >
                 {experience.title}
               </motion.h3>
               <p className="text-gray-400">{experience.company}</p>
             </div>
-            <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${levelColors[experience.level].bg} text-white`}>
+            <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${colors.bg} text-white`}>
               {experience.level}
             </span>
           </div>
+          
+          {/* Period and location */}
           <p className="text-gray-400 text-sm mt-1">{experience.period}</p>
           {experience.location && (
             <p className="text-gray-400 text-sm flex items-center">
@@ -72,16 +58,16 @@ const RoadmapItem = ({ experience, isLast }) => {
             </p>
           )}
           
+          {/* Skills */}
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            {...ANIMATION_CONFIG.fadeIn}
+            transition={{ ...ANIMATION_CONFIG.fadeIn.transition, delay: 0.3 }}
             className="mt-4 flex flex-wrap gap-2"
           >
-            {experience.skills.map((skill, index) => (
+            {experience.skills?.map((skill, index) => (
               <motion.span
                 key={index}
-                whileHover={{ scale: 1.05 }}
+                {...ANIMATION_CONFIG.scale}
                 className="px-3 py-1 text-xs rounded-full bg-gray-900 text-gray-200 border border-gray-700"
               >
                 {skill}
@@ -89,17 +75,17 @@ const RoadmapItem = ({ experience, isLast }) => {
             ))}
           </motion.div>
 
-          {experience.achievements && (
+          {/* Achievements */}
+          {experience.achievements?.length > 0 && (
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              {...ANIMATION_CONFIG.fadeIn}
+              transition={{ ...ANIMATION_CONFIG.fadeIn.transition, delay: 0.4 }}
               className="mt-4 space-y-2"
             >
               {experience.achievements.map((achievement, index) => (
                 <motion.p
                   key={index}
-                  whileHover={{ scale: 1.02 }}
+                  {...ANIMATION_CONFIG.hover}
                   className="text-gray-300 text-sm flex items-start"
                 >
                   <CheckSquare size={16} className="mr-2 mt-0.5 text-cyan-400 flex-shrink-0" />
@@ -111,16 +97,15 @@ const RoadmapItem = ({ experience, isLast }) => {
         </motion.div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default function Experience() {
+// Main experience component
+const Experience = () => {
   return (
     <section id="experience" className="relative -mt-20 pt-20 pb-20 w-full px-4 max-w-4xl mx-auto">
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        {...ANIMATION_CONFIG.card}
         viewport={{ once: true }}
         className="text-3xl font-bold mb-12 text-white text-center"
       >
@@ -130,10 +115,13 @@ export default function Experience() {
       </motion.h2>
 
       <div className="relative">
+        {/* Timeline base line */}
         <div className="absolute h-full w-0.5 bg-gray-700 left-5 top-0 hidden md:block" />
+        
+        {/* Timeline items */}
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <RoadmapItem
+            <TimelineItem
               key={exp.id}
               experience={exp}
               isLast={index === experiences.length - 1}
@@ -142,5 +130,7 @@ export default function Experience() {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default Experience;
