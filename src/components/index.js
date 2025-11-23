@@ -2,6 +2,7 @@
 
 // Sections
 export { default as Hero } from './Hero';
+export { default as About } from './about';
 export { default as Experience } from './experiences';
 export { default as Education } from './education';
 export { default as Projects } from './Projects';
