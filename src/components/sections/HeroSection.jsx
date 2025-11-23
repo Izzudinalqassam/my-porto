@@ -117,7 +117,7 @@ const HeroSection = () => {
                 Hire Me
               </CTAButton>
               <CTAButton
-                href="/resumes/IT-Izzudin.pdf"
+                href="/my-porto/resumes/IT-Izzudin.pdf"
                 icon={Download}
                 variant="secondary"
                 delay={1.2}
