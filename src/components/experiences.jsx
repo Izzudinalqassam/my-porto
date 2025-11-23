@@ -29,17 +29,9 @@ const experiences = [
     icon: "🛠️",
     level: "Internship"
   },
+
   {
     id: 4,
-    title: "IT Support Staff",
-    company: "PT Akira Data Pratama",
-    period: "Aug 2023 - Jan 2024",
-    skills: ["System Administration", "Software Installation", "Network Config"],
-    icon: "🔧",
-    level: "Staff"
-  },
-  {
-    id: 5,
     title: "IBM AI & System Administrator",
     company: "Infinite Learning (Kampus Merdeka Batch 5)",
     period: "Aug 2023 - Jan 2024",
@@ -48,7 +40,7 @@ const experiences = [
     level: "Study Independent"
   },
   {
-    id: 6,
+    id: 5,
     title: "IT Support Staff Internship",
     company: "PT Prima Unggul Persada",
     period: "May 2023 - Aug 2023",
