@@ -53,6 +53,9 @@ const RoadmapItem = ({ experience, isLast }) => {
             </span>
           </div>
           <p className="text-gray-400 text-sm mt-1">{experience.period}</p>
+          {experience.location && (
+            <p className="text-gray-400 text-sm">📍 {experience.location}</p>
+          )}
           
           <motion.div 
             initial={{ opacity: 0 }}
@@ -70,6 +73,28 @@ const RoadmapItem = ({ experience, isLast }) => {
               </motion.span>
             ))}
           </motion.div>
+
+          {experience.achievements && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mt-4 space-y-2"
+            >
+              {experience.achievements.map((achievement, index) => (
+                <motion.p
+                  key={index}
+                  whileHover={{ scale: 1.02 }}
+                  className="text-gray-300 text-sm flex items-start"
+                >
+                  <svg className="w-4 h-4 mr-2 mt-0.5 text-cyan-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                  </svg>
+                  {achievement}
+                </motion.p>
+              ))}
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </motion.div>
@@ -87,7 +112,7 @@ export default function Experience() {
         className="text-3xl font-bold mb-12 text-white text-center"
       >
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-          Experience's Roadmap
+          Professional Experience
         </span>
       </motion.h2>
 
