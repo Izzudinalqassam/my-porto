@@ -1,161 +1,210 @@
-// Skills.jsx
-import { motion } from 'framer-motion'
+// Skills.jsx - Optimized technical and soft skills showcase component
+import React, { memo } from 'react';
+import { motion } from 'framer-motion';
+import { CheckCircle, Zap, Star } from 'lucide-react';
+import Icon from './ui/Icon';
+import { ANIMATION_CONFIG } from '../utils/constants.js';
+import skills from '../data/skills.js';
 
-// Data skills
-const skills = [
-  {
-    id: 1,
-    name: "Core Technical Skills",
-    items: [
-      "network administrator",
-      "web development",
-      "system administrator",
-      "IT support",
-      "server administrator"
-    ],
-    icon: "💻"
-  },
-  {
-    id: 2,
-    name: "Development Tools",
-    items: [
-      "Git",
-      "VS Code",
-      "Docker",
-      "Linux",
-      "Dbeaver",
-      "Postman",
-      "Laragon"
-    ],
-    icon: "🛠️"
-  },
-  {
-    id: 3,
-    name: "Soft Skills",
-    items: [
-      "Problem Solving",
-      "Team Collaboration",
-      "Time Management",
-      "Continuous Learning",
-      "Communication",
-      "Adaptability",
-      "Critical Thinking"
-    ],
-    icon: "🎯"
-  },
-  {
-    id: 4,
-    name: "Currently Learning",
-    items: [
-      "Next.js",
-      "Tailwind CSS",
-      "AWS Cloud Services",
-      "Kubernetes",
-      "Golang",
-      "Kubernetes",
-      "web3",
-    ],
-    icon: "📚"
-  }
-]
-
-// Particle Background Component
+// Optimized background with fewer particles
 const SkillBackground = () => {
-  const particles = Array(10).fill(0).map(() => ({
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    size: Math.random() * 5 + 2,
-    color: `rgba(${Math.random() * 100 + 100}, ${Math.random() * 100 + 100}, ${Math.random() * 100 + 100}, 0.2)`
-  }))
+  const particles = Array.from({ length: 6 }).map((_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    delay: i * 0.8,
+    duration: 15 + Math.random() * 10
+  }));
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
-      {particles.map((particle, index) => (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {particles.map((particle) => (
         <motion.div
-          key={index}
-          initial={{ x: particle.x, y: particle.y }}
-          animate={{
-            x: [particle.x, particle.x + 100, particle.x],
-            y: [particle.y, particle.y + 100, particle.y],
-            transition: {
-              duration: 10,
-              repeat: Infinity,
-              repeatType: 'reverse'
-            }
+          key={particle.id}
+          initial={{ 
+            x: `${particle.x}%`, 
+            y: `${particle.y}%`,
+            opacity: 0
+          }}
+          animate={{ 
+            x: [`${particle.x}%`, `${particle.x + 10}%`, `${particle.x}%`],
+            y: [`${particle.y}%`, `${particle.y + 10}%`, `${particle.y}%`],
+            opacity: [0, 0.3, 0]
+          }}
+          transition={{
+            duration: particle.duration,
+            repeat: Infinity,
+            delay: particle.delay,
+            ease: "easeInOut"
           }}
           className="absolute rounded-full"
           style={{
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            background: particle.color,
-            filter: 'blur(5px)'
+            width: `${Math.random() * 3 + 2}px`,
+            height: `${Math.random() * 3 + 2}px`,
+            background: `rgba(100, 200, 255, 0.2)`,
+            filter: 'blur(1px)'
           }}
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default function Skills() {
+// Optimized skill item component
+const SkillItem = memo(({ skill, index }) => {
   return (
-    <section id="skills" className="py-20 w-full px-4 max-w-4xl mx-auto relative overflow-hidden">
-      {/* Particle Background */}
-      <SkillBackground />
+    <motion.div
+      className="flex items-center p-2 rounded-lg bg-gray-900/30 hover:bg-gray-900/60 transition-all duration-200"
+      whileHover={{ x: 3 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-cyan-400/20 to-blue-500/20 flex items-center justify-center">
+        <CheckCircle size={10} className="text-cyan-400" />
+      </div>
+      <span className="ml-2 text-sm text-gray-300 hover:text-cyan-400 transition-colors">
+        {skill}
+      </span>
+    </motion.div>
+  );
+});
+
+SkillItem.displayName = 'SkillItem';
+
+// Optimized skill category component
+const SkillCategory = memo(({ category, index }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.4,
+        delay: index * 0.1
+      }}
+      whileHover={{ 
+        y: -3
+      }}
+      className={`relative bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-xl group overflow-hidden`}
+    >
+      {/* Simplified animated background */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
       
-      <motion.h2 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="text-3xl font-bold mb-12 text-white text-center"
+      {/* Optimized icon with reduced animations */}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ 
+          delay: index * 0.1 + 0.1,
+          duration: 0.3
+        }}
+        whileHover={{ 
+          scale: 1.05
+        }}
+        className={`w-14 h-14 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 shadow-md relative overflow-hidden`}
       >
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-          Technical & Soft Skills
-        </span>
-      </motion.h2>
+        <Icon name={category.icon} size={24} className="text-white" />
+      </motion.div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {skills.map((category) => (
-          <motion.div
-            key={category.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 * category.id }}
-            className="relative bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
-          >
-            {/* Icon Background */}
-            <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-r from-cyan-400/20 to-blue-500/20 flex items-center justify-center text-cyan-400 text-3xl">
-              {category.icon}
-            </div>
+      {/* Enhanced title */}
+      <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+        {category.name}
+        {category.name.includes("Learning") && (
+          <div className="text-yellow-400">
+            <Zap size={14} />
+          </div>
+        )}
+      </h3>
 
-            <h3 className="text-xl font-bold text-white mb-4 relative pl-16">
-              {category.name}
-            </h3>
-
-            <div className="space-y-3 relative pl-16">
-              {category.items.map((skill, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center text-gray-300"
-                >
-                  <div className="w-4 h-4 mr-2 relative">
-                    <motion.div
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      className="absolute inset-0 rounded-full bg-cyan-400/20"
-                    />
-                    <svg className="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
-                  </div>
-                  <span className="text-sm">{skill}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+      {/* Optimized skills list */}
+      <div className="space-y-1.5 max-h-72 overflow-y-auto">
+        {category.items.map((skill, skillIndex) => (
+          <SkillItem 
+            key={skillIndex} 
+            skill={skill} 
+            index={skillIndex}
+          />
         ))}
       </div>
+
+      {/* Category badge */}
+      <div className={`absolute top-3 right-3 px-2 py-1 rounded-full bg-gradient-to-r ${category.color} text-white text-xs font-medium shadow-md`}>
+        {category.items.length} skills
+      </div>
+    </motion.div>
+  );
+});
+
+SkillCategory.displayName = 'SkillCategory';
+
+// Main skills component
+const Skills = () => {
+  return (
+    <section id="skills" className="py-16 w-full px-4 max-w-6xl mx-auto relative overflow-hidden">
+      <SkillBackground />
+      
+      {/* Optimized section header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-center mb-12 relative z-10"
+      >
+        <motion.div
+          initial={{ scale: 0.8 }}
+          whileInView={{ scale: 1 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
+          className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 mb-4 mx-auto shadow-lg"
+        >
+          <Star size={24} className="text-white" />
+        </motion.div>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+            Technical & Soft Skills
+          </span>
+        </h2>
+        <p className="text-gray-400 max-w-xl mx-auto">
+          Comprehensive skill set spanning technical expertise, development tools, and interpersonal abilities
+        </p>
+      </motion.div>
+
+      {/* Optimized skills grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+        {skills.map((category, index) => (
+          <SkillCategory
+            key={category.id}
+            category={category}
+            index={index}
+          />
+        ))}
+      </div>
+
+      {/* Simplified floating elements */}
+      <motion.div
+        className="absolute top-16 left-8 w-24 h-24 rounded-full bg-gradient-to-r from-cyan-400/5 to-blue-500/5 blur-lg"
+        animate={{
+          x: [0, 20, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="absolute bottom-16 right-8 w-32 h-32 rounded-full bg-gradient-to-r from-purple-400/5 to-pink-500/5 blur-lg"
+        animate={{
+          x: [0, -20, 0],
+          y: [0, 20, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
     </section>
-  )
-}
+  );
+};
+
+export default Skills;

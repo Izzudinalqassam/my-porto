@@ -1,22 +1,20 @@
-// Central data management
-// Export all data from separate files for easy management
-
+// index.js - Central data export for portfolio
 import experiences from './experiences.js';
 import education from './education.js';
 import projects from './projects.js';
-import articles from './articles.js';
+import skills from './skills.js';
 
 export {
   experiences,
   education,
   projects,
-  articles
+  skills
 };
 
-// Default export dengan semua data
+// Default export with all data
 export default {
   experiences,
   education,
   projects,
-  articles
+  skills
 };
