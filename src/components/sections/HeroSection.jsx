@@ -1,6 +1,13 @@
 // HeroSection.jsx - Main hero section component
 import { motion } from "framer-motion";
-import { Mail, Download, Calendar, Users, Award, Briefcase } from "lucide-react";
+import {
+  Mail,
+  Download,
+  Calendar,
+  Users,
+  Award,
+  Briefcase,
+} from "lucide-react";
 import ParticleBackground from "../ui/ParticleBackground";
 import ProfessionalAvatar from "../common/ProfessionalAvatar";
 import StatsCard from "../ui/StatsCard";
@@ -11,15 +18,24 @@ import SocialLinks from "../ui/SocialLinks";
 const HeroSection = () => {
   const statsData = [
     { icon: Briefcase, value: "3+", label: "Years Experience", delay: 0.8 },
-    { icon: Users, value: "2", label: "Companies", delay: 0.9 },
+    { icon: Users, value: "6", label: "Companies", delay: 0.9 },
     { icon: Award, value: "5+", label: "Major Projects", delay: 1.0 },
-    { icon: Users, value: "50+", label: "Servers Managed", delay: 1.1 }
+    { icon: Users, value: "50+", label: "Servers Managed", delay: 1.1 },
   ];
 
   const valuePropsData = [
-    { text: "Reduced system downtime by 40% through proactive monitoring", delay: 0.7 },
-    { text: "Managed 50+ servers across hybrid cloud environments", delay: 0.8 },
-    { text: "Led DevOps transformation initiatives improving deployment efficiency", delay: 0.9 }
+    {
+      text: "Reduced system downtime by 40% through proactive monitoring",
+      delay: 0.7,
+    },
+    {
+      text: "Managed 50+ servers across hybrid cloud environments",
+      delay: 0.8,
+    },
+    {
+      text: "Led DevOps transformation initiatives improving deployment efficiency",
+      delay: 0.9,
+    },
   ];
 
   return (
@@ -86,11 +102,7 @@ const HeroSection = () => {
               className="space-y-4 mb-8"
             >
               {valuePropsData.map((prop, index) => (
-                <ValueProp
-                  key={index}
-                  text={prop.text}
-                  delay={prop.delay}
-                />
+                <ValueProp key={index} text={prop.text} delay={prop.delay} />
               ))}
             </motion.div>
 
