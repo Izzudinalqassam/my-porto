@@ -320,6 +320,34 @@ nav {
   border-bottom: 1px solid var(--border-line) !important;
 }
 
+/* Desktop nav links — visible >= 768px */
+.nav-desktop-menu {
+  display: none;
+  gap: 0;
+  align-items: center;
+}
+
+/* Hamburger button — visible only on mobile */
+.nav-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 4px;
+}
+
+@media (min-width: 768px) {
+  .nav-desktop-menu {
+    display: flex;
+  }
+  .nav-hamburger {
+    display: none;
+  }
+}
+
 /* ============ MISC ============ */
 ::selection {
   background: rgba(0, 214, 143, 0.2);

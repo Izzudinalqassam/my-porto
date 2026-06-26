@@ -104,7 +104,7 @@ export default function Navbar() {
             </a>
 
             {/* Desktop Nav */}
-            <div style={{ display: 'flex', gap: '0', alignItems: 'center' }} className="hidden md:flex">
+            <div className="nav-desktop-menu">
               {navItems.map((item) => (
                 <a
                   key={item.id}
@@ -139,11 +139,7 @@ export default function Navbar() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden"
-              style={{
-                background: 'transparent', border: 'none', cursor: 'pointer',
-                color: '#94a3b8', display: 'flex', alignItems: 'center', justifyContent: 'center'
-              }}
+              className="nav-hamburger"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
