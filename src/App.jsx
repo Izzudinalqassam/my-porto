@@ -18,10 +18,7 @@ function Portfolio() {
   const [darkMode] = useState(true);
   
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900'} overflow-hidden`} style={{
-      scrollbarWidth: 'none',
-      'msOverflowStyle': 'none'
-    }}>
+    <div style={{ minHeight: '100vh', background: '#080d18', color: '#e2e8f0', overflowX: 'hidden' }}>
       <Navbar />
       <main className="overflow-hidden w-full" style={{
         scrollbarWidth: 'none',

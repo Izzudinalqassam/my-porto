@@ -1,95 +1,117 @@
-// skills.js - Technical and soft skills data
+/**
+ * Tujuan: Data technical skills Izzudin Alqassam
+ * Caller: SkillsSection.jsx via SkillCategory
+ * Dependensi: -
+ * Main Functions: skills (array)
+ * Side Effects: None
+ * Last Updated: 2026-06-26 (sync dengan cv_alqa.md)
+ */
+
 const skills = [
   {
     id: 1,
-    name: "Core Technical Skills",
+    name: "OS & Infrastructure",
     items: [
-      "Network Administration",
-      "Web Development", 
-      "System Administration",
-      "IT Support",
+      "Linux (Ubuntu, RHEL)",
+      "Windows Administration",
+      "User & Permission Management",
       "Server Administration",
-      "DevOps Practices",
-      "Container Orchestration"
+      "System Hardening"
     ],
-    icon: "Cpu",
-    color: "from-cyan-400 to-blue-500"
+    icon: "Server",
+    color: "from-cyan-400 to-teal-500"
   },
   {
     id: 2,
-    name: "Development Tools",
+    name: "DevOps & Automation",
     items: [
-      "Git",
-      "VS Code",
       "Docker",
-      "Linux",
-      "Dbeaver",
-      "Postman",
-      "Laragon",
-      "Shell Scripting"
+      "Docker Compose",
+      "Ansible",
+      "Git",
+      "Shell Scripting",
+      "CI/CD Pipelines"
     ],
-    icon: "Wrench",
-    color: "from-purple-400 to-pink-500"
+    icon: "GitBranch",
+    color: "from-emerald-400 to-cyan-500"
   },
   {
     id: 3,
-    name: "Programming Languages",
+    name: "Monitoring & Observability",
     items: [
-      "JavaScript",
-      "PHP",
-      "Python",
-      "SQL",
-      "HTML/CSS",
-      "React",
-      "Node.js"
+      "Prometheus",
+      "Grafana",
+      "SigNoz",
+      "Node Exporter",
+      "Log Analysis",
+      "Root-Cause Analysis"
     ],
-    icon: "Code2",
-    color: "from-green-400 to-teal-500"
+    icon: "Activity",
+    color: "from-blue-400 to-indigo-500"
   },
   {
     id: 4,
-    name: "Soft Skills",
+    name: "Databases",
     items: [
-      "Problem Solving",
-      "Team Collaboration",
-      "Time Management",
-      "Continuous Learning",
-      "Communication",
-      "Adaptability",
-      "Critical Thinking",
-      "Leadership"
+      "PostgreSQL",
+      "MySQL",
+      "Relational Database Design",
+      "SQL Development",
+      "DBeaver"
     ],
-    icon: "Users",
-    color: "from-orange-400 to-red-500"
+    icon: "Database",
+    color: "from-violet-400 to-purple-500"
   },
   {
     id: 5,
-    name: "Cloud & Platforms",
+    name: "Programming",
     items: [
-      "IBM Cloud",
-      "AWS",
-      "GitHub",
-      "Grafana",
-      "Prometheus",
-      "Nodeflux AI Platform"
+      "PHP",
+      "Python",
+      "JavaScript",
+      "REST APIs",
+      "HTML/CSS"
     ],
-    icon: "Cloud",
-    color: "from-indigo-400 to-purple-500"
+    icon: "Code2",
+    color: "from-orange-400 to-amber-500"
   },
   {
     id: 6,
-    name: "Currently Learning",
+    name: "Cloud & Platform",
     items: [
-      "Next.js",
-      "Tailwind CSS",
-      "AWS Cloud Services",
-      "Kubernetes",
-      "Golang",
-      "Web3 Development",
-      "Advanced DevOps"
+      "Google Cloud Platform",
+      "Vertex AI",
+      "AWS (Fundamental)",
+      "IBM Cloud",
+      "GitHub Pages",
+      "VM Provisioning"
     ],
-    icon: "BookOpen",
-    color: "from-yellow-400 to-orange-500"
+    icon: "Cloud",
+    color: "from-sky-400 to-blue-500"
+  },
+  {
+    id: 7,
+    name: "Networking & Security",
+    items: [
+      "TCP/IP",
+      "MikroTik",
+      "Cisco Packet Tracer",
+      "IBM QRadar",
+      "Firewall Configuration"
+    ],
+    icon: "Shield",
+    color: "from-rose-400 to-pink-500"
+  },
+  {
+    id: 8,
+    name: "IoT & Embedded",
+    items: [
+      "ESP8266",
+      "RFID Integration",
+      "Real-time Monitoring"
+    ],
+    icon: "Cpu",
+    color: "from-lime-400 to-green-500"
   }
 ];
 

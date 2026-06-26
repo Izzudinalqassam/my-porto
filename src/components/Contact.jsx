@@ -1,218 +1,220 @@
-// Contact.jsx - Simplified contact information section
-import React from 'react';
+/**
+ * Tujuan: Contact section — contact info, social links, dan CTA
+ * Caller: App.jsx → Contact.jsx
+ * Dependensi: framer-motion, lucide-react
+ * Main Functions: Contact
+ * Side Effects: None
+ * Last Updated: 2026-06-26 (update phone number + redesign tech theme)
+ */
+
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, Github, Linkedin, Instagram, Twitter } from 'lucide-react';
+import { Mail, MapPin, Phone, Github, Linkedin, ExternalLink } from 'lucide-react';
+
+const contactInfo = [
+  { icon: Mail, label: 'Email', value: 'izzudin.alqa@gmail.com', href: 'mailto:izzudin.alqa@gmail.com' },
+  { icon: Phone, label: 'Phone', value: '+62 856-9326-8094', href: 'tel:+6285693268094' },
+  { icon: MapPin, label: 'Location', value: 'South Jakarta, Indonesia', href: null },
+];
+
+const socialLinks = [
+  { icon: Github, label: 'GitHub', value: 'github.com/Izzudinalqassam', href: 'https://github.com/Izzudinalqassam' },
+  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/izzudinalqassam', href: 'https://linkedin.com/in/izzudinalqassam' },
+];
 
 const Contact = () => {
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'izzudin.alqa@gmail.com',
-      href: 'mailto:izzudin.alqa@gmail.com',
-      color: 'text-cyan-400'
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Jakarta, Indonesia',
-      href: null,
-      color: 'text-cyan-400'
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+62 857-1234-5678',
-      href: 'tel:+6285712345678',
-      color: 'text-cyan-400'
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: Github,
-      label: 'GitHub',
-      value: '@izzudinalqassam',
-      href: 'https://github.com/izzudinalqassam',
-      color: 'text-cyan-400'
-    },
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      value: '@izzudinalqassam',
-      href: 'https://linkedin.com/in/izzudinalqassam',
-      color: 'text-cyan-400'
-    },
-    {
-      icon: Instagram,
-      label: 'Instagram',
-      value: '@izzudin.alqa',
-      href: 'https://instagram.com/izzudin.alqa',
-      color: 'text-cyan-400'
-    },
-    {
-      icon: Twitter,
-      label: 'Twitter',
-      value: '@izzudinalqassam',
-      href: 'https://twitter.com/izzudinalqassam',
-      color: 'text-cyan-400'
-    }
-  ];
-
   return (
-    <section id="contact" className="py-20 w-full px-4 max-w-4xl mx-auto">
-      {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-            Contact Information
-          </span>
-        </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          Available for IT Operations, DevOps, and System Administrator opportunities
-        </p>
-      </motion.div>
+    <section id="contact" style={{ padding: '80px 1.5rem 120px', position: 'relative' }}>
+      <div style={{ maxWidth: '860px', margin: '0 auto' }}>
 
-      {/* Contact Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        {/* Contact Information */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-cyan-400/50 transition-all duration-300"
-        >
-          <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
-              <Mail size={16} className="text-white" />
-            </div>
-            Get in Touch
-          </h3>
-          
-          <div className="space-y-4">
-            {contactInfo.map((info, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <info.icon className={`w-5 h-5 ${info.color} mt-0.5 flex-shrink-0`} />
-                <div className="flex-1">
-                  <p className="text-sm text-gray-400 mb-1">{info.label}</p>
-                  {info.href ? (
-                    <a
-                      href={info.href}
-                      className="text-white hover:text-cyan-400 transition-colors duration-300"
-                      target={info.href.startsWith('http') ? '_blank' : undefined}
-                      rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    >
-                      {info.value}
-                    </a>
-                  ) : (
-                    <p className="text-white">{info.value}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Availability Status */}
-          <div className="mt-6 p-4 bg-green-400/10 rounded-lg border border-green-400/30">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full" />
-              <span className="text-green-400 font-medium">Available for Opportunities</span>
-            </div>
-            <p className="text-gray-300 text-sm mt-2">
-              Open to full-time, remote, and hybrid positions in IT Operations and DevOps roles
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-cyan-400/50 transition-all duration-300"
-        >
-          <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
-              <Github size={16} className="text-white" />
-            </div>
-            Social Profiles
-          </h3>
-          
-          <div className="space-y-4">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-all duration-300 group"
-              >
-                <social.icon className={`w-5 h-5 ${social.color}`} />
-                <div className="flex-1">
-                  <p className="text-sm text-gray-400">{social.label}</p>
-                  <p className="text-white font-medium group-hover:text-cyan-400 transition-colors duration-300">
-                    {social.value}
-                  </p>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Call to Action */}
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl p-6 border border-cyan-400/30"
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: '3rem' }}
         >
-          <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
-              <Phone size={16} className="text-white" />
+          <span className="section-label">// contact</span>
+          <h2 style={{
+            fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+            fontWeight: 700,
+            color: '#e2e8f0',
+            letterSpacing: '-0.02em',
+            marginTop: '0.5rem'
+          }}>Get In Touch</h2>
+          <p style={{ color: '#475569', fontSize: '0.9rem', marginTop: '0.5rem' }}>
+            Open to IT Operations, DevOps Engineer, and System Administrator opportunities
+          </p>
+        </motion.div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '1.5rem'
+        }}>
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="card-tech"
+            style={{ padding: '1.5rem' }}
+          >
+            <span className="section-label" style={{ display: 'block', marginBottom: '1.25rem' }}>
+              // direct_contact
+            </span>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {contactInfo.map((info, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{
+                    width: '32px', height: '32px', flexShrink: 0,
+                    border: '1px solid rgba(0, 214, 143, 0.15)',
+                    borderRadius: '6px',
+                    background: 'rgba(0, 214, 143, 0.06)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center'
+                  }}>
+                    <info.icon size={14} color="#00d68f" />
+                  </div>
+                  <div>
+                    <div style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: '0.65rem', color: '#475569', marginBottom: '2px',
+                      textTransform: 'uppercase', letterSpacing: '0.08em'
+                    }}>{info.label}</div>
+                    {info.href ? (
+                      <a href={info.href}
+                        target={info.href.startsWith('http') ? '_blank' : undefined}
+                        rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        style={{ fontSize: '0.88rem', color: '#e2e8f0', textDecoration: 'none' }}
+                        onMouseEnter={e => e.target.style.color = '#00d68f'}
+                        onMouseLeave={e => e.target.style.color = '#e2e8f0'}
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <span style={{ fontSize: '0.88rem', color: '#e2e8f0' }}>{info.value}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
-            Quick Connect
-          </h3>
-          
-          <div className="space-y-4">
-            <p className="text-gray-300 leading-relaxed">
-              Ready to bring expertise in infrastructure automation, cloud technologies, and system reliability to your team.
-            </p>
-            
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full" />
-                <span className="text-sm text-gray-300">Immediate availability</span>
+
+            {/* Availability */}
+            <div style={{
+              marginTop: '1.5rem', padding: '10px 14px',
+              background: 'rgba(0, 214, 143, 0.05)',
+              border: '1px solid rgba(0, 214, 143, 0.15)',
+              borderRadius: '6px',
+              display: 'flex', alignItems: 'center', gap: '8px'
+            }}>
+              <div style={{
+                width: '7px', height: '7px', borderRadius: '50%',
+                background: '#00d68f',
+                boxShadow: '0 0 6px rgba(0, 214, 143, 0.6)',
+                animation: 'blink 2s ease-in-out infinite'
+              }} />
+              <div>
+                <div style={{ fontSize: '0.8rem', color: '#00d68f', fontWeight: 600 }}>
+                  Available for Opportunities
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#475569' }}>
+                  Full-time · Remote · Hybrid
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full" />
-                <span className="text-sm text-gray-300">3+ years experience</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-purple-400 rounded-full" />
-                <span className="text-sm text-gray-300">DevOps & IT Operations focus</span>
+            </div>
+          </motion.div>
+
+          {/* Social + CTA */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+          >
+            {/* Social links */}
+            <div className="card-tech" style={{ padding: '1.5rem' }}>
+              <span className="section-label" style={{ display: 'block', marginBottom: '1.25rem' }}>
+                // social_profiles
+              </span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {socialLinks.map((social, i) => (
+                  <a
+                    key={i}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                      padding: '10px 12px',
+                      background: 'rgba(255,255,255,0.02)',
+                      border: '1px solid rgba(255,255,255,0.06)',
+                      borderRadius: '6px',
+                      textDecoration: 'none',
+                      transition: 'border-color 0.2s, background 0.2s'
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.borderColor = 'rgba(0, 214, 143, 0.25)';
+                      e.currentTarget.style.background = 'rgba(0, 214, 143, 0.04)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <social.icon size={15} color="#94a3b8" />
+                      <div>
+                        <div style={{ fontSize: '0.65rem', color: '#475569', fontFamily: "'JetBrains Mono', monospace" }}>
+                          {social.label}
+                        </div>
+                        <div style={{ fontSize: '0.82rem', color: '#e2e8f0' }}>{social.value}</div>
+                      </div>
+                    </div>
+                    <ExternalLink size={13} color="#475569" />
+                  </a>
+                ))}
               </div>
             </div>
 
-            <motion.a
-              href="mailto:izzudin.alqa@gmail.com"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="block w-full py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-lg font-semibold text-center hover:opacity-90 transition-opacity duration-300"
-            >
-              Send Email Directly
-            </motion.a>
-          </div>
+            {/* CTA card */}
+            <div className="card-tech" style={{
+              padding: '1.5rem',
+              background: 'rgba(0, 214, 143, 0.04)',
+              borderColor: 'rgba(0, 214, 143, 0.12)'
+            }}>
+              <p style={{
+                fontSize: '0.88rem', color: '#94a3b8', lineHeight: 1.7, marginBottom: '1.25rem'
+              }}>
+                Ready to bring expertise in infrastructure automation, monitoring, and system reliability to your team.
+              </p>
+              <a
+                href="mailto:izzudin.alqa@gmail.com"
+                className="btn-primary"
+                style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
+              >
+                <Mail size={14} /> Send Email
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Footer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          style={{ textAlign: 'center', marginTop: '4rem' }}
+        >
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '0.72rem', color: '#2d3748'
+          }}>
+            © 2026 Izzudin Alqassam · Built with React + Vite
+          </p>
         </motion.div>
       </div>
     </section>

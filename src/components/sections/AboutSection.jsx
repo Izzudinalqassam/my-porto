@@ -1,271 +1,216 @@
-// AboutSection.jsx - Enhanced about section based on actual CV content
-import React from 'react';
+/**
+ * Tujuan: About section — professional summary dan core competencies
+ * Caller: App.jsx → about.jsx → AboutSection.jsx
+ * Dependensi: framer-motion, lucide-react
+ * Main Functions: AboutSection
+ * Side Effects: None
+ * Last Updated: 2026-06-26 (redesign tech theme + update konten dari CV)
+ */
+
 import { motion } from 'framer-motion';
-import { 
-  Server, 
-  Cloud, 
-  Shield, 
-  Code, 
-  Database, 
-  Network,
-  Target,
-  Award,
-  Clock,
-  Users,
-  CheckCircle
-} from 'lucide-react';
-import CTAButton from '../ui/CTAButton';
+import { Server, Cloud, Shield, Code, Database, Activity, CheckCircle2, Award } from 'lucide-react';
 
-// Data based on CV
-const professionalSummary = {
-  title: "Professional Summary",
-  content: "IT professional with 3 years of hands-on experience in IT operations, system administration, technical support, and software development. Proven ability to deploy scalable infrastructure solutions using automation and containerization. Strong foundation in Linux systems, cloud technologies, AI model deployment, and IoT integration. Adept at solving technical challenges under SLA constraints, coordinating across teams, and ensuring high availability of enterprise systems.",
-  highlights: [
-    "99.9% system uptime across production environments",
-    "70% reduction in manual configuration time", 
-    "60% faster incident response time",
-    "100+ edge nodes managed successfully"
-  ]
-};
-
-const coreCompetencies = [
+const competencies = [
   {
-    id: 'infrastructure',
+    icon: Server,
     title: 'Infrastructure & DevOps',
-    icon: <Server size={24} />,
-    skills: ['Red Hat Enterprise Linux', 'Ubuntu', 'Docker', 'Docker Compose', 'CI/CD Pipelines', 'GitHub Actions'],
-    color: 'from-cyan-400 to-blue-500'
+    items: ['Linux (Ubuntu, RHEL)', 'Docker & Compose', 'Ansible Automation', 'CI/CD Pipelines'],
+    accent: '#00d68f'
   },
   {
-    id: 'cloud',
-    title: 'Cloud & Monitoring',
-    icon: <Cloud size={24} />,
-    skills: ['IBM Cloud', 'AWS (basic)', 'Grafana', 'Prometheus', 'node_exporter'],
-    color: 'from-blue-400 to-purple-500'
+    icon: Activity,
+    title: 'Monitoring & Observability',
+    items: ['Prometheus', 'Grafana', 'SigNoz', 'Log & RCA Analysis'],
+    accent: '#3b7cf7'
   },
   {
-    id: 'security',
-    title: 'Security & Tools',
-    icon: <Shield size={24} />,
-    skills: ['IBM QRadar X', 'WSUS Patching', 'Firewall Configuration', 'System Hardening', 'Incident Response'],
-    color: 'from-purple-400 to-pink-500'
+    icon: Shield,
+    title: 'Security & Operations',
+    items: ['IBM QRadar', 'Firewall Config', 'System Hardening', 'Incident Response'],
+    accent: '#7c3aed'
   },
   {
-    id: 'development',
-    title: 'Development & Databases',
-    icon: <Code size={24} />,
-    skills: ['PHP', 'React', 'Tailwind CSS', 'RESTful APIs', 'MySQL', 'PostgreSQL', 'Git'],
-    color: 'from-green-400 to-cyan-500'
-  }
+    icon: Code,
+    title: 'Development & Database',
+    items: ['PHP, Python, JS', 'PostgreSQL, MySQL', 'REST APIs', 'IoT & ESP8266'],
+    accent: '#f59e0b'
+  },
 ];
 
-const keyAchievements = [
-  {
-    id: 'ai-deployment',
-    title: 'AI Deployment Pipeline Engineering',
-    description: 'Engineered scalable AI deployment pipelines using Docker containerization, enhancing system portability and consistency across 100+ edge nodes',
-    metrics: '100+ edge nodes, 70% automation gain',
-    icon: <Target className="w-6 h-6 text-cyan-400" />,
-    impact: 'high'
-  },
-  {
-    id: 'system-uptime',
-    title: 'System Reliability Excellence',
-    description: 'Managed and maintained Ubuntu-based server infrastructure, achieving over 99.9% system uptime across all production environments',
-    metrics: '99.9% uptime, 24/7 availability',
-    icon: <Award className="w-6 h-6 text-cyan-400" />,
-    impact: 'high'
-  },
-  {
-    id: 'observability',
-    title: 'Monitoring Stack Implementation',
-    description: 'Deployed observability stack (Grafana, Prometheus, node_exporter) to monitor real-time system health, reducing incident response time by 60%',
-    metrics: '60% faster response, real-time monitoring',
-    icon: <Clock className="w-6 h-6 text-cyan-400" />,
-    impact: 'high'
-  }
+const achievements = [
+  { metric: '99.9%', label: 'System uptime maintained', icon: Award },
+  { metric: '70%', label: 'Reduction in manual config time', icon: CheckCircle2 },
+  { metric: '100+', label: 'Production servers managed', icon: Server },
+  { metric: '60%', label: 'Faster incident response', icon: Activity },
 ];
-
-const careerObjective = {
-  title: "Career Objective",
-  content: "Seeking to leverage 3 years of IT operations expertise and DevOps skills to drive infrastructure excellence and system reliability in enterprise environments. Passionate about automation, cloud technologies, and building scalable solutions that meet demanding SLA requirements."
-};
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 w-full px-4 max-w-6xl mx-auto">
-      {/* Section Title */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-            About Me
+    <section id="about" style={{ padding: '80px 1.5rem', position: 'relative' }}>
+      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: '3rem' }}
+        >
+          <span className="section-label">// about</span>
+          <h2 style={{
+            fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+            fontWeight: 700,
+            color: '#e2e8f0',
+            letterSpacing: '-0.02em',
+            marginTop: '0.5rem'
+          }}>Professional Profile</h2>
+        </motion.div>
+
+        {/* Summary + Achievements */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', marginBottom: '3rem' }}>
+          {/* Summary */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="card-tech"
+            style={{ padding: '1.75rem' }}
+          >
+            <p style={{
+              fontSize: '0.95rem', color: '#94a3b8', lineHeight: 1.8, marginBottom: '1.5rem'
+            }}>
+              Fresh graduated IT Professional with nearly 3 years of experience across software development,
+              system administration, technical operations, and IT support. Skilled in Linux and Windows
+              administration, web application development, database management, application deployment,
+              troubleshooting, and production support. Hands-on experience with Docker, PostgreSQL, MySQL,
+              networking, and IoT-based systems.
+            </p>
+
+            {/* Achievement metrics */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+              gap: '1rem'
+            }}>
+              {achievements.map((a, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.2 + i * 0.08 }}
+                  style={{
+                    padding: '1rem',
+                    background: 'rgba(0, 214, 143, 0.04)',
+                    borderRadius: '6px',
+                    border: '1px solid rgba(0, 214, 143, 0.1)',
+                  }}
+                >
+                  <div style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '1.5rem', fontWeight: 700, color: '#00d68f',
+                    marginBottom: '4px'
+                  }}>{a.metric}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#475569' }}>{a.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Core Competencies */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          style={{ marginBottom: '1rem' }}
+        >
+          <span className="section-label" style={{ marginBottom: '1.5rem', display: 'block' }}>
+            // core_competencies
           </span>
-        </h2>
-      </motion.div>
+        </motion.div>
 
-      {/* Career Objective - Priority for Recruiters */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="mb-12"
-      >
-        <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl p-6 border border-cyan-400/20 backdrop-blur-sm">
-          <div className="flex items-center gap-3 mb-3">
-            <Target className="w-6 h-6 text-cyan-400" />
-            <h3 className="text-xl font-semibold text-white">{careerObjective.title}</h3>
-          </div>
-          <p className="text-gray-300 leading-relaxed">{careerObjective.content}</p>
-        </div>
-      </motion.div>
-
-      {/* Professional Summary with Highlights */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="mb-12"
-      >
-        <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700 backdrop-blur-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <Users className="w-6 h-6 text-cyan-400" />
-            <h3 className="text-xl font-semibold text-white">{professionalSummary.title}</h3>
-          </div>
-          <p className="text-gray-300 leading-relaxed mb-6">{professionalSummary.content}</p>
-          
-          {/* Key Metrics Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {professionalSummary.highlights.map((highlight, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                className="text-center p-3 rounded-lg bg-gray-900/50 border border-gray-600"
-              >
-                <CheckCircle className="w-5 h-5 text-cyan-400 mx-auto mb-2" />
-                <p className="text-white text-sm font-medium">{highlight}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Core Competencies */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="mb-12"
-      >
-        <h3 className="text-xl font-semibold text-white mb-6 text-center">Core Competencies</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {coreCompetencies.map((category, index) => (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '1rem'
+        }}>
+          {competencies.map((comp, i) => (
             <motion.div
-              key={category.id}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-              className="bg-gray-800/50 rounded-xl p-4 border border-gray-700 hover:border-cyan-400/50 transition-all duration-300 backdrop-blur-sm group"
+              transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
+              className="card-tech"
+              style={{ padding: '1.25rem' }}
             >
-              <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                {category.icon}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
+                <div style={{
+                  width: '32px', height: '32px',
+                  border: `1px solid ${comp.accent}30`,
+                  borderRadius: '6px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: `${comp.accent}10`
+                }}>
+                  <comp.icon size={16} color={comp.accent} />
+                </div>
+                <h3 style={{
+                  fontSize: '0.85rem', fontWeight: 600, color: '#e2e8f0'
+                }}>{comp.title}</h3>
               </div>
-              <h4 className="text-sm font-semibold text-white mb-3">{category.title}</h4>
-              <div className="space-y-1">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                    <span className="text-xs text-gray-300">{skill}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {comp.items.map((item, j) => (
+                  <div key={j} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: '0.65rem', color: comp.accent
+                    }}>›</span>
+                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>{item}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
-      </motion.div>
 
-      {/* Key Achievements */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="mb-12"
-      >
-        <h3 className="text-xl font-semibold text-white mb-6 text-center">Key Achievements</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {keyAchievements.map((achievement, index) => (
-            <motion.div
-              key={achievement.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
-              className="bg-gray-800/50 rounded-xl p-5 border border-gray-700 hover:border-cyan-400/50 transition-all duration-300 backdrop-blur-sm group"
-            >
-              <div className="flex items-start gap-3 mb-3">
-                <div className="flex-shrink-0">
-                  {achievement.icon}
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-sm font-semibold text-white mb-2">{achievement.title}</h4>
-                  <p className="text-gray-300 text-sm leading-relaxed mb-3">{achievement.description}</p>
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-1 bg-cyan-400/20 rounded text-xs text-cyan-400 font-medium">
-                      {achievement.metrics}
-                    </span>
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${
-                      achievement.impact === 'high' 
-                        ? 'bg-green-400/20 text-green-400' 
-                        : 'bg-blue-400/20 text-blue-400'
-                    }`}>
-                      {achievement.impact} impact
-                    </span>
-                  </div>
-                </div>
+        {/* Certifications */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="card-tech"
+          style={{ padding: '1.5rem', marginTop: '1.5rem' }}
+        >
+          <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>
+            // certifications
+          </span>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+            {[
+              { name: 'Network Administrator Madya', issuer: 'BNSP', year: '2023–2028' },
+              { name: 'Pengembang Perangkat Lunak', issuer: 'BNSP', year: '2024–2029' },
+              { name: 'PCAP — Python Essentials', issuer: 'Cisco', year: '2024' },
+            ].map((cert, i) => (
+              <div key={i} style={{
+                padding: '8px 14px',
+                background: 'rgba(59, 124, 247, 0.07)',
+                border: '1px solid rgba(59, 124, 247, 0.15)',
+                borderRadius: '6px',
+              }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#e2e8f0' }}>{cert.name}</div>
+                <div style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '0.68rem', color: '#60a5fa'
+                }}>{cert.issuer} · {cert.year}</div>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Call to Action for Recruiters */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.7 }}
-        className="text-center"
-      >
-        <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl p-8 border border-cyan-400/20 backdrop-blur-sm">
-          <h3 className="text-xl font-semibold text-white mb-4">Ready to Drive Infrastructure Excellence</h3>
-          <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-            Available for IT Operations, DevOps Engineer, and System Administrator positions. 
-            Open to technical challenges that require expertise in automation, cloud technologies, and enterprise infrastructure.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <CTAButton href="#contact" variant="primary">
-              Schedule Technical Interview
-            </CTAButton>
-            <div className="text-gray-400 text-sm">
-              <p>📍 Jakarta, Indonesia | 🌐 Available for remote/hybrid</p>
-              <p>📧 izzudin.alqa@gmail.com | 💼 Open to opportunities</p>
-            </div>
+            ))}
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };
