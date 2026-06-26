@@ -331,3 +331,204 @@ nav {
   background: var(--border-line);
   margin: 1rem 0;
 }
+
+/* ============ KEYFRAME ANIMATIONS ============ */
+
+/* Glow pulse — for active dots and borders */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(0, 214, 143, 0.3); }
+  50%       { box-shadow: 0 0 16px rgba(0, 214, 143, 0.7), 0 0 32px rgba(0, 214, 143, 0.3); }
+}
+
+/* Float vertical — subtle levitate */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* Float horizontal — side drift */
+@keyframes float-x {
+  0%, 100% { transform: translateX(0px); }
+  50%       { transform: translateX(6px); }
+}
+
+/* Shimmer text */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Gradient orbit — background blobs */
+@keyframes orbit {
+  0%   { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+/* Scan line sweep */
+@keyframes scan {
+  0%   { top: -2px; opacity: 0.6; }
+  50%  { opacity: 0.15; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Fade slide up stagger */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Timeline line grow */
+@keyframes line-grow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* Border shimmer glow — moving border light */
+@keyframes border-glow {
+  0%   { opacity: 0.2; }
+  50%  { opacity: 0.8; }
+  100% { opacity: 0.2; }
+}
+
+/* Number odometer flicker */
+@keyframes odometer-flicker {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+/* ============ ANIMATION UTILITY CLASSES ============ */
+
+/* Glow on active elements */
+.anim-glow {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Float badge / avatar */
+.anim-float {
+  animation: float-y 4s ease-in-out infinite;
+}
+
+.anim-float-slow {
+  animation: float-y 7s ease-in-out infinite;
+}
+
+/* Shimmer gradient text */
+.anim-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    #fff 40%,
+    var(--color-primary) 60%,
+    #00d68f 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Card with 3D transform ready */
+.card-3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out, box-shadow 0.2s ease;
+}
+
+.card-3d:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 214, 143, 0.08);
+}
+
+/* Glowing border animation */
+.card-glow-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 214, 143, 0), rgba(0, 214, 143, 0.4), rgba(0, 214, 143, 0));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: border-glow 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.card-glow-border:hover::after {
+  opacity: 1;
+}
+
+/* Stagger fade-up children */
+.stagger-children > * {
+  animation: fade-up 0.5s ease both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.19s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.26s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.33s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.40s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.47s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.54s; }
+
+/* Timeline vertical line grow animation */
+.timeline-line-anim {
+  transform-origin: top center;
+  animation: line-grow 1.2s ease-out both;
+  animation-delay: 0.3s;
+}
+
+/* Scan line effect on hero */
+.scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 214, 143, 0.15), transparent);
+  pointer-events: none;
+  animation: scan 6s linear infinite;
+  z-index: 1;
+}
+
+/* Orbit blob */
+.orbit-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Skill tag hover pop */
+.skill-tag {
+  transition: color var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-accent);
+  color: var(--color-primary);
+}
+
+/* Number stat pulse when counting */
+.stat-counting {
+  animation: odometer-flicker 0.1s ease-in-out;
+}
+
+/* Media: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .anim-glow, .anim-float, .anim-float-slow, .anim-shimmer,
+  .scan-line, .orbit-blob, .timeline-line-anim,
+  .stagger-children > * {
+    animation: none !important;
+  }
+  .card-3d, .card-tech {
+    transition: none !important;
+  }
+}
